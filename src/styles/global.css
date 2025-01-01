@@ -1,0 +1,8 @@
+@import './fonts.css';
+@import './colors.css';
+@import './animations.css';
+
+body {
+  background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+  min-height: 100vh;
+}

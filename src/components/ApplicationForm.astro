@@ -1,0 +1,116 @@
+---
+import { ROLES } from '../lib/constants';
+import FormMessage from './FormMessage.astro';
+---
+
+<form id="applicationForm" class="space-y-6 sm:space-y-8 bg-white/10 backdrop-blur-lg p-6 sm:p-8 rounded-xl">
+  <div class="space-y-4 sm:space-y-6">
+    <label class="block">
+      <span class="chalk-text text-[#4ECDC4] text-base sm:text-lg">Full Name *</span>
+      <input
+        type="text"
+        name="fullName"
+        required
+        class="mt-1 sm:mt-2 block w-full rounded-lg bg-white/5 border border-white/10 p-2 sm:p-3 text-white focus:border-[#FF6B6B] focus:ring focus:ring-[#FF6B6B]/20 text-base"
+      />
+    </label>
+
+    <label class="block">
+      <span class="chalk-text text-[#4ECDC4] text-base sm:text-lg">Email *</span>
+      <input
+        type="email"
+        name="email"
+        required
+        class="mt-1 sm:mt-2 block w-full rounded-lg bg-white/5 border border-white/10 p-2 sm:p-3 text-white focus:border-[#FF6B6B] focus:ring focus:ring-[#FF6B6B]/20 text-base"
+      />
+    </label>
+
+    <label class="block">
+      <span class="chalk-text text-[#4ECDC4] text-base sm:text-lg">Position *</span>
+      <select
+        name="position"
+        required
+        class="mt-1 sm:mt-2 block w-full rounded-lg bg-white/5 border border-white/10 p-2 sm:p-3 text-white focus:border-[#FF6B6B] focus:ring focus:ring-[#FF6B6B]/20 text-base"
+      >
+        <option value="">Select a position</option>
+        {ROLES.map((role) => (
+          <option value={role}>{role}</option>
+        ))}
+      </select>
+    </label>
+
+    <label class="block">
+      <span class="chalk-text text-[#4ECDC4] text-base sm:text-lg">Resume Link *</span>
+      <input
+        type="url"
+        name="resumeLink"
+        required
+        placeholder="Google Drive, Dropbox, etc."
+        class="mt-1 sm:mt-2 block w-full rounded-lg bg-white/5 border border-white/10 p-2 sm:p-3 text-white focus:border-[#FF6B6B] focus:ring focus:ring-[#FF6B6B]/20 text-base"
+      />
+    </label>
+
+    <label class="block">
+      <span class="chalk-text text-[#4ECDC4] text-base sm:text-lg">Why join us? *</span>
+      <textarea
+        name="whyJoinUs"
+        required
+        rows="4"
+        class="mt-1 sm:mt-2 block w-full rounded-lg bg-white/5 border border-white/10 p-2 sm:p-3 text-white focus:border-[#FF6B6B] focus:ring focus:ring-[#FF6B6B]/20 text-base"
+      ></textarea>
+    </label>
+  </div>
+
+  <div class="flex items-center justify-between pt-4">
+    <a
+      href="/"
+      class="text-[#4ECDC4] hover:text-[#FFE66D] chalk-text text-base sm:text-lg"
+    >
+      ← Back
+    </a>
+    <button
+      type="submit"
+      class="bg-[#FF6B6B] text-white px-6 sm:px-8 py-2 sm:py-3 rounded-xl chalk-text text-base sm:text-lg hover:bg-[#FF8906] transition-colors"
+    >
+      Submit Application
+    </button>
+  </div>
+
+  <FormMessage id="formMessage" />
+</form>
+
+<script>
+  import type { FormData } from '../lib/types';
+  import { showMessage } from '../lib/utils';
+
+  const form = document.getElementById('applicationForm') as HTMLFormElement;
+  const messageDiv = document.getElementById('formMessage') as HTMLDivElement;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries()) as unknown as FormData;
+    
+    try {
+      const response = await fetch('/api/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+      
+      if (result.success) {
+        showMessage(messageDiv, true, 'Application submitted successfully!');
+        form.reset();
+      } else {
+        showMessage(messageDiv, false, result.error || 'Failed to submit application. Please try again.');
+      }
+    } catch (error) {
+      showMessage(messageDiv, false, 'An error occurred. Please try again.');
+    }
+  });
+</script>

@@ -1,0 +1,12 @@
+@import '@fontsource-variable/inter';
+@import '@fontsource/permanent-marker';
+
+.chalk-text {
+  font-family: 'Permanent Marker', cursive;
+  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.5px;
+}
+
+.body-text {
+  font-family: 'Inter Variable', sans-serif;
+}

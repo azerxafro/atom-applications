@@ -1,0 +1,24 @@
+---
+interface Props {
+  role: string;
+  positions: number;
+}
+
+const { role, positions } = Astro.props;
+const colors = [
+  'bg-[#FF6B6B]',
+  'bg-[#4ECDC4]',
+  'bg-[#FFE66D] text-gray-800',
+  'bg-[#7F5AF0]',
+  'bg-[#2CB67D]',
+  'bg-[#FF8906]',
+  'bg-[#E53170]',
+  'bg-[#6246EA]'
+];
+const randomColor = colors[Math.floor(Math.random() * colors.length)];
+---
+
+<div class={`p-4 sm:p-6 rounded-lg card-hover ${randomColor}`}>
+  <h3 class="text-lg sm:text-xl chalk-text mb-2 text-glow">{role}</h3>
+  <p class="opacity-90 text-sm sm:text-base">{positions} Position{positions > 1 ? 's' : ''}</p>
+</div>

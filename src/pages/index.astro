@@ -1,0 +1,92 @@
+---
+import Layout from '../layouts/Layout.astro';
+import RoleCard from '../components/RoleCard.astro';
+
+const roles = [
+  { role: 'Mobile App Development (Frontend)', positions: 2 },
+  { role: 'Backend Development', positions: 2 },
+  { role: 'UI/UX Design', positions: 2 },
+  { role: 'Quality Assurance (Testing)', positions: 2 },
+  { role: 'Marketing and User Acquisition', positions: 2 },
+  { role: 'Customer Support Management', positions: 2 },
+  { role: 'Data Analysis', positions: 2 },
+  { role: 'Content Creation', positions: 1 },
+];
+---
+
+<Layout title="Atom Internship Program">
+  <main class="container mx-auto px-4 py-8 sm:py-12">
+    <header class="text-center mb-12 sm:mb-20">
+      <h1 class="text-4xl sm:text-5xl md:text-7xl chalk-text mb-4 sm:mb-6 text-[#FFE66D] leading-tight">
+        Atom Internship Program
+      </h1>
+      <p class="text-xl sm:text-2xl text-[#4ECDC4] max-w-2xl mx-auto chalk-text">
+        Join our dynamic team and kickstart your career!
+      </p>
+    </header>
+
+    <section class="mb-12 sm:mb-20">
+      <h2 class="text-3xl sm:text-4xl chalk-text mb-8 sm:mb-10 text-[#FF6B6B] text-center">Available Roles</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
+        {roles.map((role) => <RoleCard {...role} />)}
+      </div>
+    </section>
+
+    <section class="mb-12 sm:mb-20 bg-white/10 backdrop-blur-lg p-6 sm:p-10 rounded-xl">
+      <h2 class="text-3xl sm:text-4xl chalk-text mb-6 sm:mb-8 text-[#4ECDC4] text-center">Internship Details</h2>
+      <div class="grid sm:grid-cols-2 gap-8 sm:gap-10">
+        <div>
+          <h3 class="text-xl sm:text-2xl chalk-text mb-4 sm:mb-6 text-[#FFE66D]">Program Overview</h3>
+          <ul class="space-y-3 sm:space-y-4">
+            <li class="flex items-start">
+              <span class="text-[#FF6B6B] mr-3">★</span>
+              <span class="chalk-text text-sm sm:text-base"><strong>Mode:</strong> Online</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-[#FF6B6B] mr-3">★</span>
+              <span class="chalk-text text-sm sm:text-base"><strong>Duration:</strong> Flexible</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-[#FF6B6B] mr-3">★</span>
+              <span class="chalk-text text-sm sm:text-base"><strong>Start:</strong> Mid-January</span>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-xl sm:text-2xl chalk-text mb-4 sm:mb-6 text-[#FFE66D]">Benefits</h3>
+          <ul class="space-y-3 sm:space-y-4">
+            <li class="flex items-start">
+              <span class="text-[#FF6B6B] mr-3">★</span>
+              <span class="chalk-text text-sm sm:text-base">Internship certificate</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-[#FF6B6B] mr-3">★</span>
+              <span class="chalk-text text-sm sm:text-base">Professional mentorship</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-[#FF6B6B] mr-3">★</span>
+              <span class="chalk-text text-sm sm:text-base">Real-world projects</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-[#FF6B6B] mr-3">★</span>
+              <span class="chalk-text text-sm sm:text-base">Direct employment opportunity</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="text-center">
+      <h2 class="text-3xl sm:text-4xl chalk-text mb-4 sm:mb-6 text-[#FFE66D]">Ready to Apply?</h2>
+      <p class="text-lg sm:text-xl chalk-text mb-6 sm:mb-8 text-[#4ECDC4]">
+        Application deadline: <span class="text-[#FF6B6B]">10th January</span>
+      </p>
+      <a
+        href="/apply"
+        class="inline-block bg-[#FF6B6B] text-white px-6 sm:px-10 py-3 sm:py-4 rounded-xl font-bold text-lg sm:text-xl hover:bg-[#FF8906] transition-colors chalk-text"
+      >
+        Apply Now
+      </a>
+    </section>
+  </main>
+</Layout>

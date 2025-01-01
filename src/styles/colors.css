@@ -1,0 +1,22 @@
+:root {
+  --color-primary: #FF6B6B;
+  --color-secondary: #4ECDC4;
+  --color-accent: #FFE66D;
+  --color-bright: #7F5AF0;
+  --color-pop: #2CB67D;
+  --color-orange: #FF8906;
+  --color-pink: #E53170;
+  --color-purple: #6246EA;
+}
+
+.gradient-text-primary {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-orange));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-secondary {
+  background: linear-gradient(135deg, var(--color-secondary), var(--color-bright));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
